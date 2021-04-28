@@ -1,4 +1,9 @@
 .form__submit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 48px auto 36px auto;
+  min-width: 358px;
   background-color: #000000;
   border-radius: 2px;
   min-height: 50px;
@@ -7,7 +12,6 @@
   font-size: 18px;
   line-height: 22px;
   color: #FFFFFF;
-  margin-top: 51px;
   cursor: pointer;
 }
 

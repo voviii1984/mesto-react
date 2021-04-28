@@ -33,7 +33,7 @@ function Main(props) {
         <main className="content">
             <section className="profile">
                 <div className="profile__change" onClick={props.onEditAvatar}>
-                    <img src={userAvatar} alt="Жак-Ив Кусто" className="profile__avatar" />
+                    <img src={userAvatar} alt={userName} className="profile__avatar" />
                 </div>
                 <div className="profile__info">
                     <div className="profile__infos">

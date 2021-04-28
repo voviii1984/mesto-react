@@ -4,7 +4,7 @@ class Api {
         this._headers = options.headers;
     }
 
-    _setApi(Url, param = {
+    _makeRequest(Url, param = {
         headers: this._headers,
     }) {
         return fetch(`${this._baseUrl}${Url}`, param)
@@ -18,15 +18,15 @@ class Api {
     }
 
     userInfo() {
-        return this._setApi("users/me")
+        return this._makeRequest("users/me")
     }
 
     getInitialCards() {
-        return this._setApi("cards")
+        return this._makeRequest("cards")
     }
 
     getProfile(data) {
-        return this._setApi("users/me", {
+        return this._makeRequest("users/me", {
             method: 'PATCH',
             headers: this._headers,
 
@@ -39,7 +39,7 @@ class Api {
     }
 
     getNewCard(data) {
-        return this._setApi("cards", {
+        return this._makeRequest("cards", {
             method: 'POST',
             headers: this._headers,
             body: JSON.stringify({
@@ -50,28 +50,28 @@ class Api {
     }
 
     deleteCard(id) {
-        return this._setApi(`cards/${id}`, {
+        return this._makeRequest(`cards/${id}`, {
             method: 'DELETE',
             headers: this._headers,
         })
     }
 
     putLike(id) {
-        return this._setApi(`cards/likes/${id}`, {
+        return this._makeRequest(`cards/likes/${id}`, {
             method: 'PUT',
             headers: this._headers,
         })
     }
 
     deleteLike(id) {
-        return this._setApi(`cards/likes/${id}`, {
+        return this._makeRequest(`cards/likes/${id}`, {
             method: 'DELETE',
             headers: this._headers,
         })
     }
 
     putAvatar(data) {
-        return this._setApi("users/me/avatar", {
+        return this._makeRequest("users/me/avatar", {
             method: 'PATCH',
             headers: this._headers,
             body: JSON.stringify({
