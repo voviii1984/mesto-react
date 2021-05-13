@@ -56,7 +56,14 @@ class Api {
         })
     }
 
-    putLike(id) {
+    changeLikeCardStatus(id, isLiked) {
+        return this._makeRequest(`cards/likes/${id}`, {
+            method: isLiked ? 'PUT' : 'DELETE',
+            headers: this._headers,
+        })
+    }
+
+    /*putLike(id) {
         return this._makeRequest(`cards/likes/${id}`, {
             method: 'PUT',
             headers: this._headers,
@@ -68,7 +75,7 @@ class Api {
             method: 'DELETE',
             headers: this._headers,
         })
-    }
+    }*/
 
     putAvatar(data) {
         return this._makeRequest("users/me/avatar", {
