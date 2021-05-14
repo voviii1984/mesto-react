@@ -1,14 +1,22 @@
 import PopupWithForm from './PopupWithForm';
-import { useEffect, useRef } from 'react'
+import { useEffect, useState } from 'react'
 
 function AddPlacePopup(props) {
-    const nameRef = useRef();
-    const linkRef = useRef();
+    const [nameCard, setCardName] = useState('');
+    const [linkCard, setLinkCard] = useState('');
 
     useEffect(() => {
-        nameRef.current.value = ''
-        linkRef.current.value = ''
-    }, []);
+        setCardName('');
+        setLinkCard('')
+    }, [props.isOpen]);
+
+    function changeNameCard(evt) {
+        setCardName(evt.target.value)
+    }
+
+    function changeLinkCard(evt) {
+        setLinkCard(evt.target.value)
+    }
 
     function handleSubmit(evt) {
         // Запрещаем браузеру переходить по адресу формы
@@ -16,20 +24,20 @@ function AddPlacePopup(props) {
 
         // Передаём значения управляемых компонентов во внешний обработчик
         props.onAddPlace({
-            name: nameRef.current.value,
-            link: linkRef.current.value,
+            name: nameCard,
+            link: linkCard,
         });
     }
 
     return (
-        <PopupWithForm onSubmit={handleSubmit} name='add-card' title='Новое место' isOpen={props.isOpen} onClose={props.onClose} nameButton='Создать' children={
+        <PopupWithForm onSubmit={handleSubmit} name='add-card' title='Новое место' isOpen={props.isOpen} onClose={props.onClose} nameButton='Создать' >
             <fieldset className="form-mesto">
-                <input ref={nameRef} type="text" id="addName" required minLength="2" maxLength="30" className="form-text" placeholder="Название" />
+                <input value={nameCard || ''} onChange={changeNameCard} type="text" id="addName" required minLength="2" maxLength="30" className="form-text" placeholder="Название" />
                 <span id="addNameError" className="error"></span>
-                <input ref={linkRef} type="url" id="addImage" required className="form-text" placeholder="Ссылка на картинку" />
+                <input value={linkCard || ''} onChange={changeLinkCard} type="url" id="addImage" required className="form-text" placeholder="Ссылка на картинку" />
                 <span id="addImageError" className="error"></span>
             </fieldset>
-        } />
+        </PopupWithForm>
     )
 }
 

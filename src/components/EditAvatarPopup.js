@@ -17,12 +17,12 @@ function EditAvatarPopup(props) {
     }
 
     return (
-        <PopupWithForm onSubmit={handleSubmit} name='avatar' title='Обновить аватар' isOpen={props.isOpen} onClose={props.onClose} nameButton='Сохранить' children={
+        <PopupWithForm onSubmit={handleSubmit} name='avatar' title='Обновить аватар' isOpen={props.isOpen} onClose={props.onClose} nameButton='Сохранить'>
             <fieldset className="form-avatar">
                 <input ref={avatarRef} type="url" id="addAvatar" required className="form-text" placeholder="Аватар" />
                 <span id="addAvatarError" className="error"></span>
             </fieldset>
-        } />
+        </PopupWithForm>
     )
 }
 
